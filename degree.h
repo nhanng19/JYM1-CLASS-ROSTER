@@ -1,11 +1,19 @@
 #pragma once
 #include <string>
-enum DegreeProgram
-{
-    UNKNOWN,
+
+// Enumertaion for different degree programs.
+
+enum DegreeProgram {
     SECURITY,
     NETWORK,
     SOFTWARE
 };
 
-static const std::string degreeProgramStrings[] = {"UNKNOWN", "SECURITY", "NETWORK", "SOFTWARE"};
+// Map each degree programs to its string value.
+
+static const std::string degreeProgramStrings[] = {
+    "SECURITY", 
+    "NETWORK", 
+    "SOFTWARE"
+};
+

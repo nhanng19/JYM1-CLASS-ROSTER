@@ -1,30 +1,24 @@
 #pragma once
 #include "student.h"
-#include <iomanip>
 
 class Roster
 {
-private:
-    const static int numberofStudents = 5;
+public:
+    // Maximum number of students in the roster.
+    const static int numStudents = 5;
+    // Array to store pointers to Student.
+    Student *classRosterArray[numStudents];
+    // Keep track of the last added Student.
+    int LastStudentIndex = -1;
 
 public:
+    Roster();
     ~Roster();
-    int lastIndex = -1;
-    Student *classRosterArray[numberofStudents];
     void parse(string row);
-    void add(string sID,
-             string sFirstName,
-             string sLastName,
-             string sEmail,
-             int sAge,
-             int sCompDays1,
-             int sCompDays2,
-             int sCompDays3,
-             DegreeProgram dp);
-
-    void removeID(string sID);
+    void add(string StudentID, string FirstName, string LastName, string Email, int Age, int Days1, int Days2, int Days3, DegreeProgram degreeprogram);
     void printAll();
-    void printAverageDaysInCourse(string sID);
-    void printInvalidEmail();
-    void printByDegreeProgram(DegreeProgram dp);
+    void printAverageDaysInCourse(string StudentID);
+    void printInvalidEmails();
+    void printByDegreeProgram(DegreeProgram degreeprogram);
+    void remove(string StudentID);
 };

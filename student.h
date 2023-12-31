@@ -1,47 +1,50 @@
 #pragma once
 #include <string>
-#include "degree.h"
 #include <iostream>
+#include "degree.h"
+
 using namespace std;
 
-class Student
-{
-protected:
-    string studentId;
-    string firstName;
-    string lastName;
-    string emailAddress;
-    int age;
-    int *daysInCourse;
+class Student {
+public:
+    // Maximum number of days for courses.
+    const static int CourseDays = 3;
+
+private:
+    string StudentID;
+    string FirstName;
+    string LastName;
+    string EmailAddress;
+    int Age;
+    int Days[CourseDays];
     DegreeProgram degreeProgram;
 
 public:
-    const static int daysInCourseLength = 3;
-    int rosterLength = 5;
-
-    // Constructors
     Student();
-    Student(string studentId, string firstName, string lastName, string emailAddress, int age, int *daysInCourse, DegreeProgram degreeProgram);
+    Student(string StudentID, string FirstName, string LastName, string EmailAddress, int Age, int Days[], DegreeProgram degreeProgram);
+    ~Student();
 
-    // Getters
-    string getStudentId();
+    // Accessor / getter methods for retrieving variable values.
+
+    string getStudentID();
     string getFirstName();
     string getLastName();
     string getEmailAddress();
     int getAge();
-    int *getDaysInCourse();
-    virtual DegreeProgram getDegreeProgram() = 0;
+    int *getDays();
+    DegreeProgram getDegreeProgram();
 
-    // Setters
-    void setStudentId(string studentId);
-    void setFirstName(string firstName);
-    void setLastName(string lastName);
-    void setEmailAddress(string emailAddress);
-    void setAge(int age);
-    void setDaysInCourse(int daysInCourse[]);
-    virtual void setDegreeProgram(DegreeProgram degreeProgram) = 0;
+    // Mutator / setter methods for updating variable values.
 
-    virtual void print() = 0;
+    void setStudentID(string StudentID);
+    void setFirstName(string FirstName);
+    void setLastName(string LastName);
+    void setEmailAddress(string EmailAddress);
+    void setAge(int Age);
+    void setDays(int Days[]);
+    void setDegreeProgram(DegreeProgram degreeProgram);
 
-    ~Student();
+    // Print method outputs student information.
+
+    void print();
 };

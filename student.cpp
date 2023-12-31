@@ -1,128 +1,108 @@
 #pragma once
 #include "student.h"
-#include "degree.h"
 
-Student::Student() // empty Constructor
+// Default constructor to initializes variables with default values.
 
-{
-    this->studentID = "";
-    this->firstName = "";
-    this->lastName = "";
-    this->emailAddress = "";
-    this->ageofStudent = 0;
-    for (int i = 0; i < daystoComplete; i++)
-        this->daystoComp[i] = 0;
-    this->degreeProgram = DegreeProgram::UNKNOWN;
+Student::Student() {
+    this->StudentID = "";
+    this->FirstName = "";
+    this->LastName = "";
+    this->EmailAddress = "";
+    this->Age = 0;
+    for (int i = 0; i < CourseDays; i++) {
+        this->Days[i] = 0;
+    }
+    this->degreeProgram = DegreeProgram::SECURITY;
 }
 
-Student::Student(string studentID, string firstName, string lastName, string emailAddress, int ageofStudent, int daystoComp[], DegreeProgram degreeProgram)
+// Constructor with provided values to initialize variables.
 
-{
-    this->studentID = studentID;
-    this->firstName = firstName;
-    this->lastName = lastName;
-    this->emailAddress = emailAddress;
-    this->ageofStudent = ageofStudent;
-    for (int i = 0; i < daystoComplete; i++)
-        this->daystoComp[i] = daystoComp[i];
+Student::Student(string StudentId, string FirstName, string LastName, string EmailAddress, int Age, int Days[], DegreeProgram degreeProgram) {
+    this->StudentID = StudentId;
+    this->FirstName = FirstName;
+    this->LastName = LastName;
+    this->EmailAddress = EmailAddress;
+    this->Age = Age;
+    for (int i = 0; i < CourseDays; i++) {
+        this->Days[i] = Days[i];
+    }
     this->degreeProgram = degreeProgram;
 }
 
-Student::~Student() {} // Deconstructor
+// Destructor 
 
-// getters
-string Student::getID()
-{
-    return this->studentID;
+Student::~Student() {}
+
+// Accessor / getter methods for retrieving variable values.
+
+string Student::getStudentID() { 
+    return this->StudentID; 
 }
 
-string Student::getFirstName()
-{
-    return this->firstName;
+string Student::getFirstName() { 
+    return this->FirstName; 
 }
 
-string Student::getLastName()
-{
-    return this->lastName;
+string Student::getLastName() { 
+    return this->LastName; 
 }
 
-string Student::getEmailAddress()
-{
-
-    return this->emailAddress;
+string Student::getEmailAddress() { 
+    return this->EmailAddress; 
 }
 
-int Student::getAgeofStudent()
-{
+int Student::getAge() { 
+    return this->Age; 
+};
 
-    return this->ageofStudent;
+int *Student::getDays() { 
+    return this->Days; 
 }
 
-int *Student::getDaystoComp()
-{
-
-    return this->daystoComp;
+DegreeProgram Student::getDegreeProgram() { 
+    return this->degreeProgram; 
 }
 
-DegreeProgram Student::getDegreeProgram()
-{
+// Mutator / setter methods for updating variable values.
 
-    return this->degreeProgram;
+void Student::setStudentID(string StudentID) { 
+    this->StudentID = StudentID; 
 }
 
-// setters
-
-void Student::setID(string studentID)
-{
-    this->studentID = studentID;
+void Student::setFirstName(string FirstName) { 
+    this->FirstName = FirstName; 
 }
 
-void Student::setFirstName(string firstName)
-{
-    this->firstName = firstName;
+void Student::setLastName(string LastName) { 
+    this->LastName = LastName; 
 }
 
-void Student::setLastName(string lastName)
-{
-    this->lastName = lastName;
+void Student::setEmailAddress(string EmailAddress) { 
+    this->EmailAddress = EmailAddress; 
 }
 
-void Student::setEmailAddress(string emailAddress)
-{
-
-    this->emailAddress = emailAddress;
+void Student::setAge(int Age) { 
+    this->Age = Age; 
 }
 
-void Student::setAgeofStudent(int ageofStudent)
-{
-    this->ageofStudent = ageofStudent;
+void Student::setDays(int Days[]) {
+    for (int i = 0; i < CourseDays; i++) {
+        this->Days[i] = Days[i];
+    }
 }
 
-void Student::setDaystoComp(int daystoComp[])
-{
-    this->daystoComp[0] = daystoComp[0];
-    this->daystoComp[1] = daystoComp[1];
-    this->daystoComp[2] = daystoComp[2];
+void Student::setDegreeProgram(DegreeProgram degreeprogram) {
+     this->degreeProgram = degreeprogram; 
 }
 
-void Student::setDegreeProgram(DegreeProgram dp) { this->degreeProgram = dp; }
+// Print method outputs student information.
 
-void Student::printHeader()
-
-{
-    cout << "Student ID|First Name|Last Name||Email Address|Age|Days to Complete Course|Degree Program\n";
-}
-
-void Student::print()
-
-{
-    cout << this->getID() << '\t';
-    cout << this->getFirstName() << '\t';
-    cout << this->getLastName() << '\t';
-    cout << this->getEmailAddress() << '\t';
-    cout << this->getAgeofStudent() << '\t';
-    cout << this->getDaystoComp()[0] << ',';
-    cout << this->getDaystoComp()[1] << ',';
-    cout << this->getDaystoComp()[2] << '\t';
-    cout << degreeProgramStrings[this->getDegreeProgram()] << '\n'; // degreeprogram to string
+void Student::print() {
+    cout << getStudentID() << '\t'
+         << getFirstName() << '\t'
+         << getLastName() << '\t'
+         << getEmailAddress() << '\t'
+         << getAge() << '\t'
+         << getDays()[0] << ',' << getDays()[1] << ',' << getDays()[2] << '\t'
+         << degreeProgramStrings[getDegreeProgram()] << '\n';
 }
